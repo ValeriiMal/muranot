@@ -1,0 +1,25 @@
+<form>
+
+  <div class="control" ng-repeat="mod in self.ngModel track by $index">
+    <select
+      ng-options="item as item.formName for item in self.getAvailableFor($index)"
+      ng-change="self.onSelectChange()"
+      ng-disabled="self.ngModel[$index].required"
+      ng-model="self.ngModel[$index]">
+    </select>
+
+    <span ng-if="$last">
+      <button
+        ng-if="self.removeable($index)"
+        ng-click="self.remove($index)">
+        REMOVE
+      </button>
+      <button
+        ng-click="self.add()"
+        ng-if="self.addable()">
+        ADD
+      </button>
+    </span>
+  </div>
+
+</form>
